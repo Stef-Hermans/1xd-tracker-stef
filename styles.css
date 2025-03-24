@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+/* Algemene container styling */
+.container, .calendar-container {
+    width: 400px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Navigatieknoppen */
+.back-button, .nav-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Formulier-styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.dropdown, .duration-input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    border: none;
+    background: #ddd;
+    font-size: 16px;
+    appearance: none;
+}
+
+/* Input-groep */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #ddd;
+    border-radius: 30px;
+    padding: 5px 15px;
+}
+
+.unit {
+    margin-left: auto;
+    font-size: 16px;
+    color: gray;
+}
+
+/* Placeholder voor afbeelding of tekst */
+.image-placeholder {
+    width: 100%;
+    height: 200px;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+/* Plusknop */
+.add-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 24px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Kalender styling */
+.calendar-container {
+    margin-bottom: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.calendar td, .calendar th {
+    padding: 15px;
+    font-size: 16px;
+}
+
+.selected {
+    background: green;
+    color: white;
+    border-radius: 50%;
+}
+
+/* Voortgangsbalken */
+.progress-container {
+    width: 100%;
+}
+
+.progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.bar {
+    height: 15px;
+    flex-grow: 1;
+    margin: 0 10px;
+    border-radius: 10px;
+}
+
+.green { background: green; }
+.blue { background: blue; }
+.red { background: red; }
