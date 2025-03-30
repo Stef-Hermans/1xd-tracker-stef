@@ -4,76 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training Overzicht</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Training Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="calendar-container">
-        <div class="calendar-header">
-            <button class="nav-button">&lt;</button>
-            <span>September 2021</span>
-            <button class="nav-button">&gt;</button>
-        </div>
-        <table class="calendar">
-            <tr>
-                <th>Zo</th>
-                <th>Ma</th>
-                <th>Di</th>
-                <th>Wo</th>
-                <th>Do</th>
-                <th>Vr</th>
-                <th>Za</th>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td>11</td>
-            </tr>
-            <tr>
-                <td>12</td>
-                <td>13</td>
-                <td>14</td>
-                <td>15</td>
-                <td>16</td>
-                <td class="selected">19</td>
-                <td>18</td>
-            </tr>
-        </table>
+    <div class="container">
+        <h2>Training Kalender</h2>
+        <div id="calendar" class="calendar"></div>
+        <div class="activities" id="activities"></div>
     </div>
-
-    <div class="progress-container">
-        <div class="progress">
-            <span>Reflexen</span>
-            <div class="bar green" style="width: 60%;"></div>
-            <span>60 min</span>
-        </div>
-        <div class="progress">
-            <span>1-op-1</span>
-            <div class="bar blue" style="width: 30%;"></div>
-            <span>30 min</span>
-        </div>
-        <div class="progress">
-            <span>Distributie</span>
-            <div class="bar red" style="width: 30%;"></div>
-            <span>30 min</span>
-        </div>
-    </div>
-
-    <button class="add-button">+</button>
+    <div class="add-button" onclick="window.location.href='details.html'">+</div>
+    <script src="script.js"></script>
 </body>
 
 </html>
