@@ -4,25 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activiteit Toevoegen</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Activiteiten Overzicht</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .activity-list {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
-        <button class="back-button" onclick="window.location.href='index.html'">⬅️ Terug</button>
-        <h2>Nieuwe Activiteit</h2>
-        <label for="activity-type">Soort Training:</label>
-        <select id="activity-type">
-            <option>Reflexen</option>
-            <option>1-op-1</option>
-            <option>Distributie</option>
-        </select>
-        <label for="activity-time">Tijdsduur (minuten):</label>
-        <input type="number" id="activity-time" min="1">
-        <button onclick="saveActivity()">Toevoegen</button>
+        <h1>Activiteiten Overzicht</h1>
+        <nav>
+            <a href="index.html">Terug naar Kalender</a>
+        </nav>
+        <div class="activity-list" id="activityList">Geen activiteiten</div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        let activities = JSON.parse(localStorage.getItem('activities')) || {};
+        function loadActivities() {
+            let activityList = document.getElementById('activityList');
+            activityList.innerHTML = "";
+            Object.keys(activities).forEach(date => {
+                activities[date].forEach(activity => {
+                    let item = document.createElement('div');
+                    item.className = 'activity-item';
+                    item.innerText = `Datum: ${date} - Type: ${activity}`;
+                    activityList.appendChild(item);
+                });
+            });
+            if (!Object.keys(activities).length) {
+                activityList.innerHTML = "Geen activiteiten";
+            }
+        }
+        loadActivities();
+    </script>
 </body>
 
 </html>
