@@ -11,6 +11,8 @@
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
@@ -63,58 +65,10 @@
             <button onclick="changeMonth(1)">Volgende Maand ➡️</button>
         </div>
         <div class="calendar" id="calendar"></div>
-
         <h2>Activiteiten Overzicht</h2>
         <canvas id="activityChart" width="400" height="400"></canvas>
     </div>
-    <script>
-        let currentDate = new Date();
-        let activities = JSON.parse(localStorage.getItem('activities')) || {};
-
-        function renderCalendar() {
-            let calendar = document.getElementById('calendar');
-            calendar.innerHTML = "";
-            let daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-            document.getElementById('currentMonth').innerText = currentDate.toLocaleString('nl-NL', { month: 'long', year: 'numeric' });
-            for (let day = 1; day <= daysInMonth; day++) {
-                let dayElement = document.createElement('div');
-                dayElement.className = 'day';
-                dayElement.innerText = day;
-                calendar.appendChild(dayElement);
-            }
-        }
-
-        function changeMonth(offset) {
-            currentDate.setMonth(currentDate.getMonth() + offset);
-            renderCalendar();
-            updateChart();
-        }
-
-        function updateChart() {
-            let activityCounts = { "Voetbaltraining": 0, "Keeperstraining": 0 };
-            Object.values(activities).forEach(dayActivities => {
-                dayActivities.forEach(activity => {
-                    if (activityCounts[activity] !== undefined) {
-                        activityCounts[activity]++;
-                    }
-                });
-            });
-            let ctx = document.getElementById('activityChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: Object.keys(activityCounts),
-                    datasets: [{
-                        data: Object.values(activityCounts),
-                        backgroundColor: ['#007BFF', '#FF5733']
-                    }]
-                }
-            });
-        }
-
-        renderCalendar();
-        updateChart();
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

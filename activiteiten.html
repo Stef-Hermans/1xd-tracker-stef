@@ -33,27 +33,10 @@
         <nav>
             <a href="index.html">Terug naar Kalender</a>
         </nav>
+        <button onclick="window.location.href='toevoegen.html'">Activiteit Toevoegen</button>
         <div class="activity-list" id="activityList">Geen activiteiten</div>
     </div>
-    <script>
-        let activities = JSON.parse(localStorage.getItem('activities')) || {};
-        function loadActivities() {
-            let activityList = document.getElementById('activityList');
-            activityList.innerHTML = "";
-            Object.keys(activities).forEach(date => {
-                activities[date].forEach(activity => {
-                    let item = document.createElement('div');
-                    item.className = 'activity-item';
-                    item.innerText = `Datum: ${date} - Type: ${activity}`;
-                    activityList.appendChild(item);
-                });
-            });
-            if (!Object.keys(activities).length) {
-                activityList.innerHTML = "Geen activiteiten";
-            }
-        }
-        loadActivities();
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
