@@ -60,6 +60,10 @@ function loadActivities() {
   if (!Object.keys(activities).length) {
     activityList.innerHTML = "Geen activiteiten";
   }
+
+  if (document.getElementById("activityList")) {
+    loadActivities();
+  }
 }
 
 let activityChart = null; // Variabele om de grafiek op te slaan
@@ -75,7 +79,7 @@ function updateChart() {
       activityDate.getMonth() === currentDate.getMonth()
     ) {
       activities[date].forEach((activity) => {
-        counts[activity] = (counts[activity] || 0) + 1;
+        counts[activity.type] = (counts[activity.type] || 0) + 1;
       });
     }
   });
