@@ -7,22 +7,69 @@
     <title>Activiteiten Overzicht</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f9;
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            align-items: flex-start;
         }
 
         .container {
             max-width: 800px;
-            margin: auto;
-            padding: 20px;
+            width: 90%;
             background: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            margin: 10px 0;
+            padding: 30px 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 24px;
+        }
+
+        nav a {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
         }
 
         .activity-list {
-            margin-top: 20px;
+            margin-top: 10px;
+            font-size: 15px;
+            color: #34495e;
+            min-height: 150px;
+            white-space: pre-wrap;
+            text-align: left;
         }
     </style>
 </head>
@@ -36,7 +83,9 @@
         <button onclick="window.location.href='toevoegen.html'">Activiteit Toevoegen</button>
         <div class="activity-list" id="activityList">Geen activiteiten</div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js">
+        console.log(localStorage.getItem("activities"));
+    </script>
 </body>
 
 </html>
