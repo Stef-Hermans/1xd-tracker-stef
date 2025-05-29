@@ -1,5 +1,18 @@
 let activities = JSON.parse(localStorage.getItem("activities")) || {};
 
+// Verwijder oude activiteiten (> 6 maanden)
+let now = new Date();
+let cutoff = new Date();
+cutoff.setMonth(cutoff.getMonth() - 6);
+
+Object.keys(activities).forEach((date) => {
+  let activityDate = new Date(date);
+  if (activityDate < cutoff) {
+    delete activities[date];
+  }
+});
+localStorage.setItem("activities", JSON.stringify(activities));
+
 function renderCalendar() {
   let calendar = document.getElementById("calendar");
   calendar.innerHTML = "";
@@ -18,6 +31,9 @@ function renderCalendar() {
     dayElement.className = "day";
     dayElement.innerText = day;
     if (activities[date]) dayElement.classList.add("has-activities");
+    dayElement.addEventListener("click", () => {
+      window.location.href = `toevoegen.html?date=${date}`;
+    });
     calendar.appendChild(dayElement);
   }
 }
@@ -30,7 +46,12 @@ function changeMonth(delta) {
 
 function saveActivity() {
   let date = document.getElementById("activityDate").value;
-  let type = document.getElementById("activityType").value;
+  let typeSelect = document.getElementById("activityType");
+  let type = typeSelect.value;
+  if (!type || typeSelect.selectedIndex === 0) {
+    return alert("Kies een geldig activiteitstype!");
+  }
+
   let duration = parseInt(document.getElementById("activityDuration").value);
 
   if (!date) return alert("Selecteer een datum!");
@@ -49,21 +70,33 @@ function loadActivities() {
   let activityList = document.getElementById("activityList");
   activityList.innerHTML = "";
 
-  Object.keys(activities).forEach((date) => {
-    activities[date].forEach((activity) => {
+  if (!Object.keys(activities).length) {
+    activityList.innerText = "Geen activiteiten gevonden.";
+    return;
+  }
+
+  // Sorteer datums aflopend
+  let sortedDates = Object.keys(activities).sort(
+    (a, b) => new Date(b) - new Date(a)
+  );
+
+  sortedDates.forEach((date) => {
+    let dateHeader = document.createElement("h3");
+    dateHeader.innerText = `📅 ${new Date(date).toLocaleDateString("nl-NL")}`;
+    activityList.appendChild(dateHeader);
+
+    activities[date].forEach((activity, index) => {
       let item = document.createElement("div");
-      item.innerText = `Datum: ${date} - Type: ${activity.type} - Duur: ${activity.duration} min`;
+      item.style.marginBottom = "10px";
+      item.innerHTML = `
+        <div style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+          🧤 Type: <strong>${activity.type}</strong><br>
+          ⏱️ Duur: <strong>${activity.duration} minuten</strong>
+        </div>
+      `;
       activityList.appendChild(item);
     });
   });
-
-  if (!Object.keys(activities).length) {
-    activityList.innerHTML = "Geen activiteiten";
-  }
-
-  if (document.getElementById("activityList")) {
-    loadActivities();
-  }
 }
 
 let activityChart = null; // Variabele om de grafiek op te slaan
@@ -118,5 +151,14 @@ function updateChart() {
 }
 
 let currentDate = new Date();
-renderCalendar();
-updateChart();
+
+// Alleen uitvoeren op index.html
+if (document.getElementById("calendar")) {
+  renderCalendar();
+  updateChart();
+}
+
+// Alleen uitvoeren op activiteiten.html
+if (document.getElementById("activityList")) {
+  loadActivities();
+}
