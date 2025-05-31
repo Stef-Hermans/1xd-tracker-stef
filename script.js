@@ -1,3 +1,4 @@
+/*
 let activities = JSON.parse(localStorage.getItem("activities")) || {};
 
 // Verwijder oude activiteiten (> 6 maanden)
@@ -162,3 +163,4 @@ if (document.getElementById("calendar")) {
 if (document.getElementById("activityList")) {
   loadActivities();
 }
+*/
